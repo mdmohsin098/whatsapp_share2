@@ -116,10 +116,6 @@ public class WhatsappShare implements FlutterPlugin, MethodCallHandler {
                 Log.println(Log.ERROR, "", "FlutterShare Error: Title null or empty");
                 result.error("FlutterShare: Title cannot be null or empty", null, null);
                 return;
-            } else if(phone == null || phone.isEmpty())
-            {   Log.println(Log.ERROR, "", "FlutterShare Error: phone null or empty");
-                result.error("FlutterShare: phone cannot be null or empty", null, null);
-                return;
             } else if (packageName == null || packageName.isEmpty())
             {
                 Log.println(Log.ERROR, "", "FlutterShare Error: Package name null or empty");
@@ -148,7 +144,12 @@ public class WhatsappShare implements FlutterPlugin, MethodCallHandler {
             intent.setAction(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.setPackage(packageName);
-            intent.putExtra("jid",phone + "@s.whatsapp.net");
+            if(phone != null)
+            {
+                if(!phone.isEmpty()){
+                    intent.putExtra("jid",phone + "@s.whatsapp.net");
+                }
+            }
             intent.putExtra(Intent.EXTRA_SUBJECT, title);
             intent.putExtra(Intent.EXTRA_TEXT, extraText);
 
@@ -183,10 +184,6 @@ public class WhatsappShare implements FlutterPlugin, MethodCallHandler {
                 Log.println(Log.ERROR, "", "FlutterShare: ShareLocalFile Error: filePath null or empty");
                 result.error("FlutterShare: FilePath cannot be null or empty", null, null);
                 return;
-            } else if(phone == null || phone.isEmpty())
-            {   Log.println(Log.ERROR, "", "FlutterShare Error: phone null or empty");
-                result.error("FlutterShare: phone cannot be null or empty", null, null);
-                return;
             } else if (packageName == null || packageName.isEmpty())
             {
                 Log.println(Log.ERROR, "", "FlutterShare Error: Package name null or empty");
@@ -206,7 +203,12 @@ public class WhatsappShare implements FlutterPlugin, MethodCallHandler {
             intent.setAction(Intent.ACTION_SEND_MULTIPLE);
             intent.setType("*/*");
             intent.setPackage(packageName);
-            intent.putExtra("jid",phone + "@s.whatsapp.net");
+            if(phone != null)
+            {
+                if(!phone.isEmpty()){
+                    intent.putExtra("jid",phone + "@s.whatsapp.net");
+                }
+            }
             intent.putExtra(Intent.EXTRA_SUBJECT, title);
             intent.putExtra(Intent.EXTRA_TEXT, text);
             intent.putExtra(Intent.EXTRA_STREAM, files);

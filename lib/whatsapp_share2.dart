@@ -32,13 +32,15 @@ class WhatsappShare {
   /// - Phone: is the [phone] contact number to share with.
 
   static Future<bool?> share({
-    required String phone,
+    String? phone,
     String? text,
     String? linkUrl,
     Package package = Package.whatsapp,
   }) async {
-    if (phone.isEmpty) {
-      throw FlutterError('Phone cannot be null and with country code');
+    if (phone != null) {
+      if (phone.isEmpty) {
+        throw FlutterError('Phone cannot be null and with country code');
+      }
     }
 
     String _package = package.index == 0 ? "com.whatsapp" : "com.whatsapp.w4b";
@@ -62,14 +64,16 @@ class WhatsappShare {
   /// - Phone: is the [phone] contact number to share with.
   static Future<bool?> shareFile({
     required List<String> filePath,
-    required String phone,
+    String? phone,
     String? text,
     Package package = Package.whatsapp,
   }) async {
     if (filePath.isEmpty) {
       throw FlutterError('FilePath cannot be null');
-    } else if (phone.isEmpty) {
-      throw FlutterError('Phone cannot be null and with country code');
+    } else if (phone != null) {
+      if (phone.isEmpty) {
+        throw FlutterError('Phone cannot be null and with country code');
+      }
     }
 
     String _package = package.index == 0 ? "com.whatsapp" : "com.whatsapp.w4b";
