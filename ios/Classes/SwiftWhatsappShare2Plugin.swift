@@ -1,13 +1,13 @@
 import Flutter
 import UIKit
 
-public class SwiftWhatsappShare: NSObject, FlutterPlugin {
+public class SwiftWhatsAppShare2: NSObject, FlutterPlugin {
 
   private var result: FlutterResult?
 
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "whatsapp_share", binaryMessenger: registrar.messenger())
-    registrar.addMethodCallDelegate(SwiftWhatsappShare(), channel: channel)
+    let channel = FlutterMethodChannel(name: "whatsapp_share2", binaryMessenger: registrar.messenger())
+    registrar.addMethodCallDelegate(SwiftWhatsAppShare2(), channel: channel)
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
@@ -25,9 +25,9 @@ public class SwiftWhatsappShare: NSObject, FlutterPlugin {
     public func share(call: FlutterMethodCall) -> Bool {
         let args = call.arguments as? [String: Any?]
 
-        let title = args!["title"] as? String
-        let text = args!["text"] as? String
-        let linkUrl = args!["linkUrl"] as? String
+        let title = args!["title"] as? String;
+        let text = args!["text"] as? String;
+        let linkUrl = args!["linkUrl"] as? String;
 
         if (title == nil || title!.isEmpty) {
             return false
